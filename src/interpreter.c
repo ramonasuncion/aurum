@@ -618,7 +618,6 @@ void run_interpreter(const char *source_code)
   while ((token = scan_token(&scanner)).type != TOKEN_EOF) {
     // action_func_t action = state.actions[state.token.type];
     action_func_t action = actions[token.type];
-    hashmap_print(hashmap);
     if (action != NULL) {
       action();
     } else {

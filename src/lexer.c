@@ -293,7 +293,6 @@ Token scan_token(Scanner *scanner)
           if (hashmap != NULL) {
             Macro *macro = hashmap_get(hashmap, get_token(scanner));
             if (macro != NULL) {
-              printf("Macro: %s", macro->key);
               return create_token(TOKEN_MACRO, scanner);
             }
           }
