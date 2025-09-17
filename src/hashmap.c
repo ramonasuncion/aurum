@@ -4,8 +4,6 @@
 
 #include "hashmap.h"
 
-// HashMap *hashmap = NULL;
-
 HashMap* hashmap_create(void)
 {
   HashMap* map = malloc(sizeof(HashMap));

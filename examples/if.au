@@ -1,13 +1,13 @@
 if 34 35 + 69 = then  
   if 1 then
     if 1 then 
-        67 .
+        67 ?
       else
-        68 .
+        68 ?
       end
   else 
-    24 .
+    24 ?
   end
 else 
-  420 .
+  420 ?
 end

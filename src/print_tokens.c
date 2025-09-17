@@ -46,7 +46,7 @@ void print_token(Token token, Scanner *scanner, int token_id)
     case TOKEN_EOF: printf("%-6s", "EOF"); break;
     case TOKEN_END: printf("%-6s", "end"); break;
     case TOKEN_THEN: printf("%-6s", "then"); break;
-    case TOKEN_PERIOD: printf("%-6s", "."); break;
+    case TOKEN_QUESTION: printf("%-6s", "?"); break;
     case TOKEN_UNKNOWN: printf("%-6s", "UNKNOWN"); break;
     case TOKEN_SYSCALL: printf("%-6s", "systemcall"); break;
     case TOKEN_DUMP: printf("%-6s", "dump"); break;

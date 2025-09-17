@@ -10,7 +10,6 @@
 
 #define ALPHABET_SIZE (128)
 
-// HashMap *hashmap = NULL;
 extern HashMap *hashmap;
 
 TrieNode *trie_node_create(TokenType type)
@@ -207,7 +206,7 @@ Token scan_token(Scanner *scanner)
     case '-': return create_token(TOKEN_SUBTRACT, scanner);
     case '&': return create_token(TOKEN_BITWISE_AND, scanner);
     case '|':  return create_token(TOKEN_BITWISE_OR, scanner);
-    case '.': return create_token(TOKEN_PERIOD, scanner);
+    case '?': return create_token(TOKEN_QUESTION, scanner);
     case '"':
       while (peek(scanner) != '"' && !is_at_end(scanner)) {
         if (peek(scanner) == '\n') {
