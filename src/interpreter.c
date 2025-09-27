@@ -1,3 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <unistd.h>
+#include <stdint.h>
+
 #include "lexer.h"
 #include "scanner.h"
 #include "stack.h"
@@ -5,12 +12,19 @@
 #include "memory.h"
 #include "hashmap.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <unistd.h>
-#include <stdint.h>
+static Stack *stack;
+static Stack *loop_stack;
+static Stack *end_stack;
+
+static Token token;
+static Scanner scanner;
+
+static char memory[MEMORY_CAPACITY];
+
+HashMap *hashmap;
+
+typedef void (*action_func_t)(void);
+action_func_t* actions;
 
 void print_result(Stack *stack)
 {
@@ -369,6 +383,7 @@ void run_interpreter(const char *source_code) {
   hashmap = hashmap_create();
 
   init_scanner(&scanner, source_code);
+
 
   actions = (action_func_t[]) {
     [TOKEN_NUMBER] = action_number,
