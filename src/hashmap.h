@@ -1,5 +1,5 @@
-#ifndef _hashmap_h_
-#define _hashmap_h_
+#ifndef _HASHMAP_H_
+#define _HASHMAP_H_
 
 #include "lexer.h"
 
@@ -57,5 +57,5 @@ void hashmap_free(HashMap* map);
 */
 void hashmap_print(HashMap* map);
 
-#endif // _hashmap_h_
+#endif /* _HASHMAP_H_ */
 
