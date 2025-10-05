@@ -3,9 +3,6 @@
 
 #include "lexer.h"
 
-/**
- * @brief Handling macros
- */
 struct macro {
   const char *key;
   struct token *tokens;

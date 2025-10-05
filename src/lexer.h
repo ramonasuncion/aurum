@@ -1,9 +1,6 @@
 #ifndef _LEXER_H_
 #define _LEXER_H_
 
-/**
- * @brief Token types.
- */
 enum token_type {
   TOKEN_UNKNOWN,
   TOKEN_NUMBER,

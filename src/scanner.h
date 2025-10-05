@@ -5,9 +5,6 @@
 
 #include "lexer.h"
 
-/**
- * @brief Scanner structure.
- */
 struct scanner {
   const char *source;
   const char *start;

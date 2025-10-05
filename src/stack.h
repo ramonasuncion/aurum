@@ -5,9 +5,6 @@
 
 #include <stdbool.h>
 
-/**
- * @brief Stack structure.
- */
 struct stack {
   int *data;
   int top;
