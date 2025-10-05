@@ -1,5 +1,5 @@
-#ifndef _scanner_h_
-#define _scanner_h_
+#ifndef _SCANNER_H_
+#define _SCANNER_H_
 
 #include <stdbool.h>
 
@@ -8,7 +8,7 @@
 /**
  * @brief Scanner structure.
  */
-typedef struct {
+struct scanner {
   const char *source;
   const char *start;
   const char *current;
@@ -16,42 +16,42 @@ typedef struct {
   int column;
   int line;
   int position;
-} Scanner;
+};
 
 /**
  * @brief Initialize a scanner.
  * @param scanner Pointer to the scanner structure.
  * @param source Source code string.
  */
-void init_scanner(Scanner *scanner, const char *source);
+void init_scanner(struct scanner *scanner, const char *source);
 
 /**
  * @brief Check if the scanner is at the end of the source code.
  * @param scanner Pointer to the scanner structure.
  * @return true if at the end, false otherwise.
  */
-bool is_at_end(Scanner *scanner);
+bool is_at_end(struct scanner *scanner);
 
 /**
  * @brief Advance the scanner to the next character.
  * @param scanner Pointer to the scanner structure.
  * @return The current character.
  */
-char advance(Scanner *scanner);
+char advance(struct scanner *scanner);
 
 /**
  * @brief Peek the current character without advancing the scanner.
  * @param scanner Pointer to the scanner structure.
  * @return The current character.
  */
-char peek(Scanner *scanner);
+char peek(struct scanner *scanner);
 
 /**
  * @brief Peek the next character without advancing the scanner.
  * @param scanner Pointer to the scanner structure.
  * @return The next character.
  */
-char peek_next(Scanner *scanner);
+char peek_next(struct scanner *scanner);
 
 /**
  * @brief Check if the current character matches the expected character and advance the scanner if it does.
@@ -59,7 +59,7 @@ char peek_next(Scanner *scanner);
  * @param expected The expected character.
  * @return true if the characters match, false otherwise.
  */
-bool match(Scanner *scanner, char expected);
+bool match(struct scanner *scanner, char expected);
 
 /**
  * @brief Create a token with the specified type.
@@ -67,14 +67,14 @@ bool match(Scanner *scanner, char expected);
  * @param scanner Pointer to the scanner structure.
  * @return The created token.
  */
-Token create_token(TokenType type, Scanner *scanner);
+struct token create_token(enum token_type type, struct scanner *scanner);
 
 /**
  * @brief Scan the next token from the source code.
  * @param scanner Pointer to the scanner structure.
  * @return The scanned token.
  */
-Token scan_token(Scanner *scanner);
+struct token scan_token(struct scanner *scanner);
 
-#endif // _scanner_h_
+#endif /* _SCANNER_H_ */
 

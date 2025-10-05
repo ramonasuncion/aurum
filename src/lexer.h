@@ -1,10 +1,10 @@
-#ifndef _lexer_h_
-#define _lexer_h_
+#ifndef _LEXER_H_
+#define _LEXER_H_
 
 /**
  * @brief Token types.
  */
-typedef enum {
+enum token_type {
   TOKEN_UNKNOWN,
   TOKEN_NUMBER,
   TOKEN_IDENTIFIER,
@@ -55,25 +55,23 @@ typedef enum {
   TOKEN_DEFINE,
   TOKEN_MACRO,
   TOKEN_INCLUDE,
-} TokenType;
+};
 
 /**
  * @brief Token structure.
  */
-typedef struct {
-  TokenType type;
+struct token {
+  enum token_type type;
   const char *lexeme;
   int line;
-} Token;
-
+};
 
 /**
  * @brief Trie Data structure.
  */
-typedef struct TrieNode {
-  TokenType type;
-  struct TrieNode *children[128];
-} TrieNode;
+struct trie_node {
+  enum token_type type;
+  struct trie_node *children[128];
+};
 
-#endif // _lexer_h_
-
+#endif /* _LEXER_H_ */
