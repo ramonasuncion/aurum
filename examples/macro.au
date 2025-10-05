@@ -1,4 +1,3 @@
 define print 1 1 3 systemcall end
 
 "Hello, World!\n" print
-

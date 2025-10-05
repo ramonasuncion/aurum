@@ -13,4 +13,3 @@ memory 1 + dup fetch 1 + store
 memory 2 + dup fetch 1 + store
 
 3 memory 1 1 3 systemcall
-
