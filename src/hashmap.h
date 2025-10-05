@@ -1,61 +1,55 @@
-#ifndef _hashmap_h_
-#define _hashmap_h_
+#ifndef _HASHMAP_H_
+#define _HASHMAP_H_
 
 #include "lexer.h"
 
-/**
- * @brief Handling macros
-*/
-typedef struct {
-  const char* key;
-  Token* tokens;
-  int numTokens;
-} Macro;
+struct macro {
+  const char *key;
+  struct token *tokens;
+  int num_tokens;
+};
 
-
-typedef struct {
-  Macro** entries;
+struct hashmap {
+  struct macro **entries;
   int capacity;
   int size;
-} HashMap;
-
-/* Hash map */
-// extern HashMap* hashmap;
+};
 
 /**
  * @brief Creates a new hashmap
  * @return A pointer to the new hashmap
-*/
-HashMap* hashmap_create(void);
+ */
+struct hashmap *hashmap_create(void);
 
 /**
  * @brief Inserts a macro into the hashmap
  * @param map The hashmap to insert into
  * @param key The key of the macro
  * @param tokens The tokens of the macro
- * @param numTokens The number of tokens in the macro
-*/
-void hashmap_insert(HashMap* map, const char* key, Token* tokens, int numTokens);
+ * @param num_tokens The number of tokens in the macro
+ */
+void hashmap_insert(struct hashmap *map, const char *key,
+    struct token *tokens, int num_tokens);
 
 /**
  * @brief Gets a macro from the hashmap
  * @param map The hashmap to get from
  * @param key The key of the macro
  * @return A pointer to the macro
-*/
-Macro* hashmap_get(HashMap* map, const char* key);
+ */
+struct macro *hashmap_get(struct hashmap *map, const char *key);
 
 /**
  * @brief Frees the hashmap
  * @param map The hashmap to free
-*/
-void hashmap_free(HashMap* map);
+ */
+void hashmap_free(struct hashmap *map);
 
 /**
  * @brief Prints the hashmap
  * @param map The hashmap to print
-*/
-void hashmap_print(HashMap* map);
+ */
+void hashmap_print(struct hashmap *map);
 
-#endif // _hashmap_h_
+#endif /* _HASHMAP_H_ */
 

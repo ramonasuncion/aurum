@@ -1,11 +1,11 @@
-#ifndef _memory_h_
-#define _memory_h_
+#ifndef _MEMORY_H_
+#define _MEMORY_H_
 
 #define SYS_READ  0
 #define SYS_WRITE 1
 #define SYS_EXIT  60
 
-// Should be enough.
+// Should be enough...
 #define MEMORY_CAPACITY (250 * 1024 * 1024)
 
 /**
@@ -15,5 +15,5 @@
 */
 void print_memory(char *memory, int size);
 
-#endif // _memory_h_
+#endif /* _MEMORY_H_ */
 

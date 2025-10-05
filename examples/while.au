@@ -1,6 +1,6 @@
 // 5 to 0
 5 while dup 2 > do
-  dup . 
+  dup ? 
   1 -
 end 
 
@@ -9,13 +9,13 @@ dump
 
 // 0 to 25
 25 0 while 2dup >= do
-    dup . 
+    dup ? 
     1 +
 end
 
 // 0 to 99
 0 while dup 100 < do
-  dup . 
+  dup ? 
   1 +
 end
 

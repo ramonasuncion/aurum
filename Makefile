@@ -1,63 +1,25 @@
-# Compiler and flags
-CC=gcc -I./include
-CFLAGS=-std=gnu99 -Wall -Werror -Wfatal-errors -Wno-unused-function -Wpedantic -g
-# -Wall -Wextra -Wshadow -Werror
+CFLAGS=-Isrc -Wall -Wextra # -g -DDEBUG
+SRC=src
+BIN=bin
+OBJ=obj
 
-# Directories
-OBJ=./obj
-BIN=./bin
-TEST_BIN=./test_bin
-SRC=./src
-INC=./include
-TEST_SRC=./tests
+SRCS := $(wildcard $(SRC)/*.c)
+OBJS := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS))
 
-# Source files and object files
-SOURCES=$(wildcard $(SRC)/*.c)
-TEST_SOURCES=$(wildcard $(TEST_SRC)/*.c)
-OBJECTS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
-TEST_OBJECTS=$(patsubst $(TEST_SRC)/%.c, $(OBJ)/%.o, $(TEST_SOURCES))
+EXEC := $(BIN)/aurum
 
-# Executables
-EXEC=$(BIN)/aurum
-TEST_EXECUTABLES=$(foreach t,$(notdir $(TEST_SOURCES:.c=)), $(TEST_BIN)/$(t))
+.PHONY: all clean mkdirs
+all: $(EXEC)
 
-# Targets
-all: mkdirs $(EXEC)
-test: mkdirs $(TEST_EXECUTABLES)
+$(EXEC): $(OBJS) | mkdirs
+	$(CC) $(CFLAGS) $(OBJS) -o $@
 
-# Create the directories
+$(OBJ)/%.o: $(SRC)/%.c | mkdirs
+	$(CC) $(CFLAGS) -c $< -o $@
+
 mkdirs:
-	@mkdir -p $(OBJ) $(BIN) $(TEST_BIN)
+	@mkdir -p $(BIN) $(OBJ)
 
-$(EXEC): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $@
-
-# Compile the source files into object files
-$(OBJ)/%.o : $(SRC)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ)/%.o : $(TEST_SRC)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Link test files to create individual executables
-$(TEST_BIN)/hashmap_tests: $(OBJ)/hashmap_tests.o $(OBJ)/hashmap.o $(OBJ)/lexer.o
-	$(CC) $(CFLAGS) $(OBJ)/hashmap_tests.o $(OBJ)/hashmap.o $(OBJ)/lexer.o -o $@
-
-$(TEST_BIN)/lexer_tests: $(OBJ)/lexer_tests.o $(OBJ)/lexer.o $(OBJ)/print_tokens.o $(OBJ)/hashmap.o
-	$(CC) $(CFLAGS) $(OBJ)/lexer_tests.o $(OBJ)/lexer.o $(OBJ)/print_tokens.o $(OBJ)/hashmap.o -o $@
-
-$(TEST_BIN)/stack_tests: $(OBJ)/stack_tests.o $(OBJ)/stack.o
-	$(CC) $(CFLAGS) $(OBJ)/stack_tests.o $(OBJ)/stack.o -o $@
-
-# Clean target
 clean:
-	@echo "Removed build files."
-	@rm -rf $(EXEC) $(OBJECTS) $(TEST_BIN) ./obj/ ./bin/
-
-# Install target (optional)
-install:
-	cp $(EXEC) /usr/local/bin/
-
-# Phony targets
-.PHONY: all clean distclean install
+	@rm -rf $(BIN)/* core* *~ $(SRC)/*~ docs/* *.dSYM $(OBJ)/*
 
