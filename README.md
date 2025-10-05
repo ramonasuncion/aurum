@@ -2,6 +2,9 @@
 
 Aurum is a programming language designed for simplicity and readability. It is a high-level, procedural, stack-oriented, interpreted language.
 
+> [!WARNING]  
+> The language is being rewritten improve code clarity while maintaing the same functionality.
+
 ## Usage
 
 ```sh
